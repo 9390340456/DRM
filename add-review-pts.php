@@ -1,3 +1,12 @@
+<?php 
+
+session_start();
+include "db_conn.php";
+
+
+if (isset($_SESSION['sno']) && isset($_SESSION['user_id'])) 
+
+ ?>
 <!DOCTYPE html>
 <html>
 <link rel="icon" href="images\logo.jpg" type="image/icon type">
@@ -24,7 +33,7 @@
                     <i class="fas fa-bars"></i>
                 </div>
                 <h1 class="navbar-heading">Add Review
-                    <a href="login.html" id="logoutButton"><button class="logout-btn" id="logoutButton" name="button"
+                    <a href="login.php" id="logoutButton"><button class="logout-btn" id="logoutButton" name="button"
                             type="button">Logout</button></a>
                 </h1>
             </div>
@@ -61,18 +70,18 @@
         <div class="sidebar" id="sideNav">
             <div class="profile">
                 <img src="images\dpp.jpg" alt="profile_picture">
-                <h3>Employee Name</h3>
+                <h3><?php $emptySpace = " "; echo $_SESSION['fname'] . $emptySpace . $_SESSION['lname']; ?></h3>
                 <p>Member</p>
             </div>
             <ul>
                 <li>
-                    <a href="member-dashboard.html">
+                    <a href="member-dashboard.php?<?php echo time(); ?>">
                         <span class="icon"><i class="fas fa-home"></i></span>
                         <span class="item">Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="member-assign-docs.html" class="active">
+                    <a href="member-assign-docs.php?<?php echo time(); ?>" class="active">
                         <span class="icon"><i class="fas fa-duotone fa-file-invoice"></i></span> 
                         <span class="item">Assigned Documents</span>
                     </a>

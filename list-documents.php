@@ -1,5 +1,15 @@
+<?php 
+
+session_start();
+include "db_conn.php";
+
+
+if (isset($_SESSION['sno']) && isset($_SESSION['user_id'])) 
+
+ ?>
 <!DOCTYPE html>
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="icon" href="icon_path" type="image/icon type">
 <title>DRM</title>
 <!-- Head Section -->
@@ -47,7 +57,7 @@
                         <td>STR</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="update-btn"><a href="update-document.html"><button>Update</button></a></td>
+                        <td class="update-btn"><a href="update-document.php"><button>Update</button></a></td>
                         <td class="del-btn"><a href=""><button>Delete</button></a></td>
                         <td class="dwnld-btn"><a href=""><button>Download</button></a></td>
                     </tr>
@@ -57,7 +67,7 @@
                         <td>STD</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="update-btn"><a href="update-document.html"><button>Update</button></a></td>
+                        <td class="update-btn"><a href="update-document.php"><button>Update</button></a></td>
                         <td class="del-btn"><a href=""><button>Delete</button></a></td>
                         <td class="dwnld-btn"><a href=""><button>Download</button></a></td>
                     </tr>
@@ -67,7 +77,7 @@
                         <td>SRS</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="update-btn"><a href="update-document.html"><button>Update</button></a></td>
+                        <td class="update-btn"><a href="update-document.php"><button>Update</button></a></td>
                         <td class="del-btn"><a href=""><button>Delete</button></a></td>
                         <td class="dwnld-btn"><a href=""><button>Download</button></a></td>
                     </tr>
@@ -77,7 +87,7 @@
                         <td>SDD</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="update-btn"><a href="update-document.html"><button>Update</button></a></td>
+                        <td class="update-btn"><a href="update-document.php"><button>Update</button></a></td>
                         <td class="del-btn"><a href=""><button>Delete</button></a></td>
                         <td class="dwnld-btn"><a href=""><button>Download</button></a></td>
                     </tr>
@@ -87,7 +97,7 @@
                         <td>STR</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="update-btn"><a href="update-document.html"><button>Update</button></a></td>
+                        <td class="update-btn"><a href="update-document.php"><button>Update</button></a></td>
                         <td class="del-btn"><a href=""><button>Delete</button></a></td>
                         <td class="dwnld-btn"><a href=""><button>Download</button></a></td>
                     </tr>
@@ -97,7 +107,7 @@
                         <td>STD</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="update-btn"><a href="update-document.html"><button>Update</button></a></td>
+                        <td class="update-btn"><a href="update-document.php"><button>Update</button></a></td>
                         <td class="del-btn"><a href=""><button>Delete</button></a></td>
                         <td class="dwnld-btn"><a href=""><button>Download</button></a></td>
                     </tr>
@@ -107,7 +117,7 @@
                         <td>SRS</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="update-btn"><a href="update-document.html"><button>Update</button></a></td>
+                        <td class="update-btn"><a href="update-document.php"><button>Update</button></a></td>
                         <td class="del-btn"><a href=""><button>Delete</button></a></td>
                         <td class="dwnld-btn"><a href=""><button>Download</button></a></td>
                     </tr>
@@ -126,42 +136,42 @@
         <div class="sidebar">
             <div class="profile">
                 <img src="images\dpp.jpg" alt="profile_picture">
-                <h3>Employee Name</h3>
+                <h3><?php $emptySpace = " "; echo $_SESSION['fname'] . $emptySpace . $_SESSION['lname']; ?></h3>
                 <p>Technology Head</p>
             </div>
             <ul>
                 <li>
-                    <a href="dashboard.html">
+                    <a href="dashboard.php?<?php echo time(); ?>">
                         <span class="icon"><i class="fas fa-home"></i></span>
                         <span class="item">Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="list-members.html">
+                    <a href="list-members.php?<?php echo time(); ?>">
                         <span class="icon"><i class="fas fa-users"></i></span>
                         <span class="item">List of Members</span>
                     </a>
                 </li>
                 <li>
-                    <a href="list-documents.html" class="active">
+                    <a href="list-documents.php?<?php echo time(); ?>" class="active">
                         <span class="icon"><i class="fas fa-list-ol"></i></span>
                         <span class="item">List of Documents</span>
                     </a>
                 </li>
                 <li>
-                    <a href="doc-assign.html">
+                    <a href="doc-assign.php?<?php echo time(); ?>">
                         <span class="icon"><i class="fas fa-file-signature"></i></span>
                         <span class="item">Assign to members</span>
                     </a>
                 </li>
                 <li>
-                    <a href="view-review-pts.html">
+                    <a href="view-review-pts.php?<?php echo time(); ?>">
                         <span class="icon"><i class="fas fa-solid fa-file-lines"></i></span> 
                         <span class="item">View Review Points</span>
                     </a>
                 </li>
                 <li>
-                    <a href="report-gen.html">
+                    <a href="report-gen.php?<?php echo time(); ?>">
                         <span class="icon"><i class="fas fa-duotone fa-chart-simple"></i></span> 
                         <span class="item">Report Generation</span>
                     </a>

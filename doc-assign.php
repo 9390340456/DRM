@@ -1,7 +1,17 @@
+<?php 
+
+session_start();
+include "db_conn.php";
+
+
+if (isset($_SESSION['sno']) && isset($_SESSION['user_id'])) 
+
+ ?>
 <!DOCTYPE html>
 <html>
-    <link rel="icon" href="images\logo.jpg" type="image/icon type">
-    <title>DRM - Member Dashboard</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="icon" href="icon_path" type="image/icon type">
+<title>DRM</title>
 <!-- Head Section -->
 
 <head>
@@ -9,12 +19,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    <link rel="stylesheet" href="styles\member-assign-docs.css">
+    <link rel="stylesheet" href="styles\doc-assign.css">
 </head>
 <!-- Body Section -->
 
 <body>
-    <script src="script\member-assign-docs.css.js"></script>
+    <script src="script\doc-assign.js"></script>
 
     <div class="main">
         <div class="section">
@@ -23,13 +33,12 @@
                 <div class="hamburger">
                     <i class="fas fa-bars"></i>
                 </div>
-                <h1 class="navbar-heading">List of Assigned Documents
+                <h1 class="navbar-heading">Document Assign
                     <a href="login.php"><button class="logout-btn" name="button" type="button">Logout</button></a>
                 </h1>
             </div>
             <!-- Actual Body Container -->
             <div class="main-body-container">
-                <!-- <a href="add-document.html"><button name="button" type="button">Add Document</button></a> -->
                 <table class="table">
                     <tr>
                         <th>Sl No.</th>
@@ -37,9 +46,7 @@
                         <th>Document Name</th>
                         <th>Project</th>
                         <th>Department</th>
-                        <th>Download</th>
-                        <th>Add Review Points</th>
-                        <th>Delete</th>
+                        <th>Assign</th>
                     </tr>
                     <tr>
                         <td>1</td>
@@ -47,9 +54,7 @@
                         <td>STR</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="dwn-btn"><a href=""><button>Download</button></a></td>
-                        <td class="assign-btn"><a href="add-review-pts.html"><button>Add Review Points</button></a></td>
-                        <td class="del-btn"><a href=""><button>Delete</button></a></td>
+                        <td class="assign-btn"><a href="assign.php?<?php echo time(); ?>"><button>Assign</button></a></td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -57,9 +62,7 @@
                         <td>STD</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="dwn-btn"><a href=""><button>Download</button></a></td>
-                        <td class="assign-btn"><a href="add-review-pts.html"><button>Add Review Points</button></a></td>
-                        <td class="del-btn"><a href=""><button>Delete</button></a></td>
+                        <td class="assign-btn"><a href="assign.php?<?php echo time(); ?>"><button>Assign</button></a></td>
                     </tr>
                     <tr>
                         <td>3</td>
@@ -67,9 +70,7 @@
                         <td>SRS</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="dwn-btn"><a href=""><button>Download</button></a></td>
-                        <td class="assign-btn"><a href="add-review-pts.html"><button>Add Review Points</button></a></td>
-                        <td class="del-btn"><a href=""><button>Delete</button></a></td>
+                        <td class="assign-btn"><a href="assign.php?<?php echo time(); ?>"><button>Assign</button></a></td>
                     </tr>
                     <tr>
                         <td>4</td>
@@ -77,9 +78,7 @@
                         <td>SDD</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="dwn-btn"><a href=""><button>Download</button></a></td>
-                        <td class="assign-btn"><a href="add-review-pts.html"><button>Add Review Points</button></a></td>
-                        <td class="del-btn"><a href=""><button>Delete</button></a></td>
+                        <td class="assign-btn"><a href="assign.php?<?php echo time(); ?>"><button>Assign</button></a></td>
                     </tr>
                     <tr>
                         <td>5</td>
@@ -87,9 +86,7 @@
                         <td>STR</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="dwn-btn"><a href=""><button>Download</button></a></td>
-                        <td class="assign-btn"><a href="add-review-pts.html"><button>Add Review Points</button></a></td>
-                        <td class="del-btn"><a href=""><button>Delete</button></a></td>
+                        <td class="assign-btn"><a href="assign.php?<?php echo time(); ?>"><button>Assign</button></a></td>
                     </tr>
                     <tr>
                         <td>6</td>
@@ -97,9 +94,7 @@
                         <td>STD</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="dwn-btn"><a href=""><button>Download</button></a></td>
-                        <td class="assign-btn"><a href="add-review-pts.html"><button>Add Review Points</button></a></td>
-                        <td class="del-btn"><a href=""><button>Delete</button></a></td>
+                        <td class="assign-btn"><a href="assign.php?<?php echo time(); ?>"><button>Assign</button></a></td>
                     </tr>
                     <tr>
                         <td>7</td>
@@ -107,9 +102,7 @@
                         <td>SRS</td>
                         <td>ABM</td>
                         <td>DSQA</td>
-                        <td class="dwn-btn"><a href=""><button>Download</button></a></td>
-                        <td class="assign-btn"><a href="add-review-pts.html"><button>Add Review Points</button></a></td>
-                        <td class="del-btn"><a href=""><button>Delete</button></a></td>
+                        <td class="assign-btn"><a href="assign.php?<?php echo time(); ?>"><button>Assign</button></a></td>
                     </tr>
                 </table>
                 <div class="pagination">
@@ -126,20 +119,44 @@
         <div class="sidebar">
             <div class="profile">
                 <img src="images\dpp.jpg" alt="profile_picture">
-                <h3>Employee Name</h3>
-                <p>Member</p>
+                <h3><?php $emptySpace = " "; echo $_SESSION['fname'] . $emptySpace . $_SESSION['lname']; ?></h3>
+                <p>Technology Head</p>
             </div>
             <ul>
                 <li>
-                    <a href="member-dashboard.html">
+                    <a href="dashboard.php?<?php echo time(); ?>">
                         <span class="icon"><i class="fas fa-home"></i></span>
                         <span class="item">Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="member-assign-docs.html" class="active">
-                        <span class="icon"><i class="fas fa-duotone fa-file-invoice"></i></span> 
-                        <span class="item">Assigned Documents</span>
+                    <a href="list-members.php?<?php echo time(); ?>">
+                        <span class="icon"><i class="fas fa-users"></i></span>
+                        <span class="item">List of Members</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="list-documents.php?<?php echo time(); ?>">
+                        <span class="icon"><i class="fas fa-list-ol"></i></span>
+                        <span class="item">List of Documents</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="doc-assign.php?<?php echo time(); ?>" class="active">
+                        <span class="icon"><i class="fas fa-file-signature"></i></span>
+                        <span class="item">Assign to members</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="view-review-pts.php?<?php echo time(); ?>">
+                        <span class="icon"><i class="fas fa-solid fa-file-lines"></i></span>
+                        <span class="item">View Review Points</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="report-gen.php?<?php echo time(); ?>">
+                        <span class="icon"><i class="fas fa-duotone fa-chart-simple"></i></span> 
+                        <span class="item">Report Generation</span>
                     </a>
                 </li>
             </ul>

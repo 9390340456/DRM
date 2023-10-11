@@ -6,7 +6,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    <link rel="stylesheet" href="styles\login.css">
+    <link rel="stylesheet" href="styles\login.css?<?php echo time(); ?>">
 </head>
 
 <body>
@@ -30,7 +30,7 @@
             <form action="login.php" method="post">
                 <h1>Login</h1>
                 <b></b>
-                <!-- Add this code inside your form -->
+                
 <?php
 if (isset($_GET['error'])) {
     echo '<div class="error-message">' . htmlspecialchars($_GET['error']) . '</div>';
@@ -73,17 +73,16 @@ if(isset($_POST['user_id']) && isset($_POST['password'])) {
     $uid = validate($_POST['user_id']);
     $pass = validate($_POST['password']);
 
-
     if(empty($uid) && $pass) {
-        header("location: login.php?error=user id is required");
+        header("location: login.php?error=User Id is required");
         exit();
     }
     else if($uid && empty($pass)) {
-        header("location: login.php?error=password is required");
+        header("location: login.php?error=Password is required");
         exit();
     }
     else if(empty($uid) && empty($pass)) {
-        header("location: login.php?error= user id and password required"); // Correct the typo here
+        header("location: login.php?error= User Id and Password required");
        exit();
   }
 
@@ -92,24 +91,46 @@ if(isset($_POST['user_id']) && isset($_POST['password'])) {
 
     if(mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result); // Change 'rows' to 'row' here
-        if($row['user_id'] === $uid && $row['password'] === $pass) {
-            echo "Logged In!";
+        /*if($row['user_id'] === $uid && $row['password'] === $pass) {
             $_SESSION['fname'] = $row['fname'];
             $_SESSION['lname'] = $row['lname'];
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['password'] = $row['password'];
             $_SESSION['sno'] = $row['sno'];
-            header("location: dashboard.html");
             exit();
-        }
-        else {
-            header("location: login.php?error=Incorrect user id or password"); // Correct the typo here
+        }*/
+    // Check the user's role here
+    $userRole = $row['role'];
+
+    if ($userRole === 'Technology Director') {
+        // Redirect to the admin dashboard
+        header("location: dashboard.php");
+        $_SESSION['fname'] = $row['fname'];
+        $_SESSION['lname'] = $row['lname'];
+        exit();
+    } elseif ($userRole === 'Member') {
+        // Redirect to the user dashboard
+        header("location: member-dashboard.php");
+        $_SESSION['fname'] = $row['fname'];
+        $_SESSION['lname'] = $row['lname'];
+        exit();
+    } /*else {
+        // Handle other roles or unknown roles
+        header("location: unknown_role_page.php");
+        exit();
+    }*/
+} else{
+    header("location: login.php?error=Incorrect User Id or Password");
+    exit();
+}
+      /*else {
+            header("location: login.php?error=Incorrect user id or password");
            exit();
       }
     }
     else{
          header("location: login.php");
          exit();
-    }
+    }*/
 }
 ?>

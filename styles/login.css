@@ -58,7 +58,7 @@ body {
 /* Login Box Styles */
 .loginBox {
   width: 500px;
-  height: 350px;
+  height: 400px;
   position: absolute;
   border: 1px solid black;
   background-color: #ddd;
@@ -79,7 +79,7 @@ form h1 {
   text-align: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   /* margin-top: 0px; */
-  margin-bottom: 0px !important;
+  margin-bottom: 32px;
 }
 
 /* Form Label Styles */
@@ -140,10 +140,13 @@ form input {
 
 body > div.main > div > form > div.error-message {
   /* background: #F2DEDE;  */
-  color: red !important;
-  text-align: center !important;
+  color: red;
+  text-align: center;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   /*padding: 10px;
   width: 95%;
   border-radius: 5px; */
   margin: 20px auto;
+  font-size: 20px;
 }

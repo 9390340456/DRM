@@ -1,3 +1,12 @@
+<?php 
+
+session_start();
+include "db_conn.php";
+
+
+if (isset($_SESSION['sno']) && isset($_SESSION['user_id'])) 
+
+ ?>
 <!DOCTYPE html>
 <html>
 <link rel="icon" href="images\logo.jpg" type="image/icon type">
@@ -14,7 +23,7 @@
 <!-- Body Section -->
 
 <body>
-    <script src="script\member-dashboard.js"></script>
+    <!-- <script src="script\member-dashboard.js"></script> -->
 
     <div class="main">
         <div class="section">
@@ -39,18 +48,19 @@
         <div class="sidebar" id="sideNav">
             <div class="profile">
                 <img src="images\dpp.jpg" alt="profile_picture">
-                <h3>Employee Name</h3>
+                <h3><?php $emptySpace = " "; echo $_SESSION['fname'] . $emptySpace . $_SESSION['lname']; ?></h3>
                 <p>Member</p>
+
             </div>
             <ul>
                 <li>
-                    <a href="member-dashboard.html" class="active">
+                    <a href="member-dashboard.php?<?php echo time(); ?>" class="active">
                         <span class="icon"><i class="fas fa-home"></i></span>
                         <span class="item">Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="member-assign-docs.html">
+                    <a href="member-assign-docs.php?<?php echo time(); ?>">
                         <span class="icon"><i class="fas fa-duotone fa-file-invoice"></i></span> 
                         <span class="item">Assigned Documents</span>
                     </a>

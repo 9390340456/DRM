@@ -1,3 +1,12 @@
+<?php 
+
+session_start();
+include "db_conn.php";
+
+
+if (isset($_SESSION['sno']) && isset($_SESSION['user_id'])) 
+
+ ?>
 <!DOCTYPE html>
 <html>
 <link rel="icon" href="images\logo.jpg" type="image/icon type">
@@ -39,42 +48,42 @@
         <div class="sidebar" id="sideNav">
             <div class="profile">
                 <img src="images\dpp.jpg" alt="profile_picture">
-                <h3>Employee Name</h3>
+                <h3><?php $emptySpace = " "; echo $_SESSION['fname'] . $emptySpace . $_SESSION['lname']; ?></h3>
                 <p>Technology Head</p>
             </div>
             <ul>
                 <li>
-                    <a href="dashboard.html" class="active">
+                    <a href="dashboard.php?<?php echo time(); ?>" class="active">
                         <span class="icon"><i class="fas fa-home"></i></span>
                         <span class="item">Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="list-members.html">
+                    <a href="list-members.php?<?php echo time(); ?>">
                         <span class="icon"><i class="fas fa-users"></i></span>
                         <span class="item">List of Members</span>
                     </a>
                 </li>
                 <li>
-                    <a href="list-documents.html">
+                    <a href="list-documents.php?<?php echo time(); ?>">
                         <span class="icon"><i class="fas fa-list-ol"></i></span>
                         <span class="item">List of Documents</span>
                     </a>
                 </li>
                 <li>
-                    <a href="doc-assign.html">
+                    <a href="doc-assign.php?<?php echo time(); ?>">
                         <span class="icon"><i class="fas fa-file-signature"></i></span>
                         <span class="item">Assign to members</span>
                     </a>
                 </li>
                 <li>
-                    <a href="view-review-pts.html">
+                    <a href="view-review-pts.php?<?php echo time(); ?>">
                         <span class="icon"><i class="fas fa-solid fa-file-lines"></i></span> 
                         <span class="item">View Review Points</span>
                     </a>
                 </li>
                 <li>
-                    <a href="report-gen.html">
+                    <a href="report-gen.php?<?php echo time(); ?>">
                         <span class="icon"><i class="fas fa-duotone fa-chart-simple"></i></span> 
                         <span class="item">Report Generation</span>
                     </a>
@@ -135,7 +144,7 @@
         hamburger.addEventListener("click", function () {
             document.querySelector("body").classList.toggle("active");
         });
-
+    
     </script>
 </body>
 
