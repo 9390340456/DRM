@@ -41,8 +41,8 @@ if (isset($_SESSION['sno']) && isset($_SESSION['user_id']))
             </div>
             <!-- Actual Body Container -->
             <div class="main-body-container">
-                <a href="add-member.php"><button name="button" type="button">Add Member</button></a>
-                <table class="table">
+            <div class="add-btn"><a href="add-member.php" type="button">Add Member</a></div>                
+            <table class="table">
                     <tr>
                         <!-- <th><input type="checkbox"></th> -->
                         <th>Member ID</th>

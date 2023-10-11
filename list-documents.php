@@ -38,9 +38,9 @@ if (isset($_SESSION['sno']) && isset($_SESSION['user_id']))
                 </h1>
             </div>
             <!-- Actual Body Container -->
-            <div class="main-body-container">
-                <a href="add-document.html"><button name="button" type="button">Add Document</button></a>
-                <table class="table">
+        <div class="main-body-container">
+            <div class="add-btn"><a href="add-document.php" type="button">Add Document</a></div>
+            <table class="table">
                     <tr>
                         <th>Sl No.</th>
                         <th>Document ID</th>

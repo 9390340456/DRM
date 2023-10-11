@@ -30,19 +30,19 @@
             <form action="login.php" method="post">
                 <h1>Login</h1>
                 <b></b>
-                
-<?php
-if (isset($_GET['error'])) {
-    echo '<div class="error-message">' . htmlspecialchars($_GET['error']) . '</div>';
-}
-?>
 
-                    <label>User ID:</label><br>
+                <?php
+                if (isset($_GET['error'])) {
+                    echo '<div class="error-message">' . htmlspecialchars($_GET['error']) . '</div>';
+                }
+                ?>
+
+                <label>User ID:</label><br>
                 <input type=text name="user_id" placeholder="Enter user id here..."><br><br>
                 <label><b></b>Password:</label><br>
                 <input type="password" name="password" placeholder="Enter password here... "><br><br>
                 <a href="login.php">
-                    <button type="submit" >Login</button>
+                    <button type="submit">Login</button>
                 </a>
                 <div class="forgot-psw">
                     <a href="forgot-psw.html">Forgot Password</a>
@@ -62,34 +62,33 @@ session_start();
 include "db_conn.php";
 
 // Define the validate function first
-function validate($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;   
+function validate($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
 if(isset($_POST['user_id']) && isset($_POST['password'])) {
     $uid = validate($_POST['user_id']);
     $pass = validate($_POST['password']);
 
-    if(empty($uid) && $pass) {
+    if (empty($uid) && $pass) {
         header("location: login.php?error=User Id is required");
         exit();
-    }
-    else if($uid && empty($pass)) {
+    } else if ($uid && empty($pass)) {
         header("location: login.php?error=Password is required");
         exit();
-    }
-    else if(empty($uid) && empty($pass)) {
+    } else if (empty($uid) && empty($pass)) {
         header("location: login.php?error= User Id and Password required");
-       exit();
-  }
+        exit();
+    }
 
     $sql = "SELECT * FROM users where user_id='$uid' AND password='$pass'";
     $result = mysqli_query($conn, $sql);
 
-    if(mysqli_num_rows($result) === 1) {
+    if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result); // Change 'rows' to 'row' here
         /*if($row['user_id'] === $uid && $row['password'] === $pass) {
             $_SESSION['fname'] = $row['fname'];
@@ -99,38 +98,38 @@ if(isset($_POST['user_id']) && isset($_POST['password'])) {
             $_SESSION['sno'] = $row['sno'];
             exit();
         }*/
-    // Check the user's role here
-    $userRole = $row['role'];
+        // Check the user's role here
+        $userRole = $row['role'];
 
-    if ($userRole === 'Technology Director') {
-        // Redirect to the admin dashboard
-        header("location: dashboard.php");
-        $_SESSION['fname'] = $row['fname'];
-        $_SESSION['lname'] = $row['lname'];
-        exit();
-    } elseif ($userRole === 'Member') {
-        // Redirect to the user dashboard
-        header("location: member-dashboard.php");
-        $_SESSION['fname'] = $row['fname'];
-        $_SESSION['lname'] = $row['lname'];
-        exit();
-    } /*else {
-        // Handle other roles or unknown roles
-        header("location: unknown_role_page.php");
-        exit();
-    }*/
-} else{
-    header("location: login.php?error=Incorrect User Id or Password");
-    exit();
-}
-      /*else {
-            header("location: login.php?error=Incorrect user id or password");
+        if ($userRole === 'Technology Director') {
+            // Redirect to the admin dashboard
+            header("location: dashboard.php");
+            $_SESSION['fname'] = $row['fname'];
+            $_SESSION['lname'] = $row['lname'];
+            exit();
+        } elseif ($userRole === 'Member') {
+            // Redirect to the user dashboard
+            header("location: member-dashboard.php");
+            $_SESSION['fname'] = $row['fname'];
+            $_SESSION['lname'] = $row['lname'];
+            exit();
+        } /*else {
+           // Handle other roles or unknown roles
+           header("location: unknown_role_page.php");
            exit();
-      }
+       }*/
+    } else {
+        header("location: login.php?error=Incorrect User Id or Password");
+        exit();
     }
-    else{
-         header("location: login.php");
+    /*else {
+          header("location: login.php?error=Incorrect user id or password");
          exit();
-    }*/
+    }
+  }
+  else{
+       header("location: login.php");
+       exit();
+  }*/
 }
 ?>

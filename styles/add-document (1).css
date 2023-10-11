@@ -1,5 +1,3 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap'); */
-
 * {
   list-style: none;
   text-decoration: none;
@@ -69,9 +67,9 @@ body {
   text-align: center;
   text-decoration: none;
   padding: 12px 25px;
-  margin-left: 54%;
+  margin-left: 57%;
   margin-block-end: auto;
-  position:fixed;
+  position: fixed;
   cursor: pointer;
   border: 2px solid black;
   border-radius: 5px;
@@ -94,7 +92,7 @@ body {
 .main .section .main-body-container {
   margin: 150px 30px 30px 30px;
   background: rgb(241, 241, 241);
-  padding: 20px;
+  padding: 50px 40px 25px 40px;
   line-height: 28px;
 }
 
@@ -175,109 +173,85 @@ body.active .main .sidebar {
   display: block;
 }
 
-/* "Add Document" Button Styles */
-body > div > div.section > div.main-body-container > div.add-btn > a {
-  float:initial;
-  font-size: medium;
-  color: black;
-  background-color: skyblue;
-  border: 1px solid black;
-  border-radius: 2px;
-  cursor: pointer;
-  padding: 5px 10px;
-}
-
-.add-btn {
-  margin: 0px 0px 20px 45%;
-}
-
-body > div > div.section > div.main-body-container > div.add-btn > a:hover {
-  background: gainsboro;
-  color: black;
-}
-
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  border: 1px solid black;
-  padding: 10px;
-}
-
-.table th {
-  background-color: cornflowerblue;
-}
-
-.table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-/* Table Buttons Styles */
-.table td a button {
+.label {
   float: left;
-  margin: 0px;
+  /* display: inline-block; */
+  width: 25%;
+  padding: 12px 12px 12px 0;
+  margin-top: 6px;
 }
 
-.table td {
-  padding-right: 0px;
-  padding-left: 1.8%;
+.input {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
 }
 
-.table td.dwnld-btn {
-  padding-right: 0px;
-  padding-left: 2.5%;
+input[type=text],
+select {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  padding: 12px;
 }
 
-.table td a button {
-  font-size: medium;
+.input textarea {
+  width: 100%;
+  height: 100px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  padding: 12px;
+}
+
+/* File Upload Button Styles */
+input[type=file]::file-selector-button {
   color: black;
-  background-color: gainsboro;
   border: 1px solid black;
-  border-radius: 2px;
+  background: gainsboro;
+  padding: 7px 20px;
+  border-radius: 4px;
   cursor: pointer;
-  padding: 5px 10px;
+  margin-top: 10px;
+  margin-right: 20px;
+  transition: background .2s ease-in-out;
 }
 
-.table td a button:hover {
-  background: whitesmoke;
-  color: black;
+input[type=file]::file-selector-button:hover {
+  background: #ccc;
 }
 
-.table .del-btn a button{
-  background-color: rgb(255, 158, 147);
+/* "Submit" Button Styles */
+input[type=submit] {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(5, 67, 105);
+  padding: 12px 40px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 35px 0px 0px 45%;
 }
 
-.table .dwnld-btn a button{
-  background-color: powderblue;
+input[type=submit]:hover {
+  background-color: rgb(0, 87, 137);
 }
 
-/* Pagination Styles */
-.pagination {
-  /* float: right; */
-  padding-left: 38%;
-  padding-top: 20px;
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-.pagination a {
-  color: black;
-  font-size: 17px;
-  padding: 8px 12px;
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25,
+  .col-75,
+  input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
 }
-
-.pagination a:hover {
-  font-size: 17px;
-  padding: 8px 12px;
-  background-color: powderblue;
-}
-
-body > div > div.section > div.main-body-container > div > a:nth-child(2) {
-  background-color: skyblue;
-}
-
-body > div > div.section > div.main-body-container > div > a:nth-child(2):hover {
-  background-color: gainsboro;
-}
-
